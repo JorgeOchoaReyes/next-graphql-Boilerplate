@@ -1,0 +1,15 @@
+query getDogs {
+    dogs {
+    name
+    breed
+    ageInWeeks
+    image
+    sex
+    description
+    color
+    attributes {
+      key
+      value
+    }
+    }
+}

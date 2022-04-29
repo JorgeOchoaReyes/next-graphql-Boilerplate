@@ -1,9 +1,9 @@
 import {ApolloServer} from "apollo-server-micro";
 import Cors from 'micro-cors'; 
-import { buildSchema, Resolver, Query, Arg, ObjectType, Field, ID } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import 'reflect-metadata';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import { DogResolver } from "../../graphql/Resolvers/dogs";
+import { DogResolver } from "../../../server/graphql/Resolvers/dogs";
 
 const cors = Cors(); 
 
@@ -18,6 +18,12 @@ const server  = new ApolloServer({
 
 const startServer = server.start();
 
+export const config = {
+    api: {
+        bodyParser: false
+    }
+  }
+
 export default cors( async (req, res) => {
     await startServer;
     if (req.method === 'OPTIONS') {
@@ -27,8 +33,3 @@ export default cors( async (req, res) => {
     return await server.createHandler({path: "/api/graphql"})(req, res);
 });
 
-export const config = {
-  api: {
-      bodyParser: false
-  }
-}
