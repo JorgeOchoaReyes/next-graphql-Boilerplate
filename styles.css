@@ -1,0 +1,124 @@
+body {
+  background: #2E2B33;
+  }
+  
+  .buttons {
+  display: block;
+  margin: 50px auto;
+  text-align: center;
+  }
+  
+  
+  i {
+  font-size: 30px;
+  color: #FFF;
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  z-index: 10;
+  font-style: normal;
+  font-family: arial;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  }
+  
+  span {
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 35px;
+  margin: 8px 4px; /*change spaing around */ 
+  border-radius: 12px;
+  border-left: 6px solid #28282A;
+  border-right: 6px solid #28282A;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), inset 0 0 0 0 rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  }
+  
+  
+  span:before, span:after {
+  box-sizing: border-box;
+  position: absolute;
+  display: block;
+  content: '';
+  width: 35px;
+  height: 35px;
+  -webkit-transform: rotate(45deg) skew(-13deg, -13deg);
+  border-radius: 9.5px;
+  transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  }
+  
+  
+  span:before {
+  top: -14px;
+  left: 6px;
+  border-top: 6px solid #28282A;
+  border-left: 6px solid #28282A;
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.03), inset 0 0 0 -4px rgba(0, 0, 0, 0.7);
+  }
+  
+  span:after {
+  bottom: -14px;
+  left: 6px;
+  border-bottom: 6px solid #28282A;
+  border-right: 6px solid #28282A;
+  box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.03), inset 0 0 0 -4px rgba(0, 0, 0, 0.7);
+  }
+  
+  span.red {
+  background: #E1443F;
+  }
+  
+  span.blue {
+  background: #4490C1;
+  }
+  
+  span.green {
+  background: #1DB79B;
+  }
+  
+  span.red:before, span.red:after {
+  background: #E1443F;
+  }
+  
+  span.green:before, span.green:after {
+  background: #1DB79B;
+  }
+  
+  span.blue:before, span.blue:after {
+  background: #4490C1;
+  }
+  
+  
+  span:hover,
+  span.off{
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), inset 0 0 7px -1px rgba(0, 0, 0, 0.7);
+  }
+  
+  span:hover:before,
+  span.off:before{
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.03), inset 4px 4px 7px -4px rgba(0, 0, 0, 0.7);
+  }
+  
+  span:hover:after,
+  span.off:after{
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.03), inset -4px -4px 7px -4px rgba(0, 0, 0, 0.7);
+  }
+  
+  
+  span.off i {
+      color: #000;
+      opacity: 0.1;
+  }
+  
+  
+  span.hidden {
+      opacity:0;
+  }
+  

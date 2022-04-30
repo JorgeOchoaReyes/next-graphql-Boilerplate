@@ -3,6 +3,8 @@ import {
 } from '@chakra-ui/react';
 import { dehydrate, useQuery } from 'react-query';
 import { queryClient, getDogs } from '../../server/api';
+import { Colony } from '../components/Colony';
+import {Layout} from '../components/Layout';
 
 export async function getServerSideProps() {
   await queryClient.prefetchQuery(["dogs"], () => getDogs());
@@ -19,14 +21,9 @@ const Index = ({name}) => {
 
   
   return (
-    <div>
-
-      <Text color="white">
-        {JSON.stringify(data)}
-        {data.dogs[0].name}
-      </Text>
-
-    </div>
+    <Layout>
+        <Colony />
+    </Layout>
 
   ) 
 }
