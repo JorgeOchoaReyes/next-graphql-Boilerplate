@@ -17,7 +17,7 @@ const Logo = (props) => {
             </Flex>
             <Flex align='center' >
                 <Text fontSize='xl' textColor="white" fontWeight='bold'>
-                    SpellAnt
+                    BoilerPlate Project
                 </Text>
             </Flex>
 

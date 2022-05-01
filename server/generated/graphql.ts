@@ -1,11 +1,11 @@
-import { GraphQLClient } from 'graphql-request';
-import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
+import * as Urql from 'urql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -77,6 +77,10 @@ export const GetDogsDocument = gql`
   }
 }
     `;
+
+export function useGetDogsQuery(options?: Omit<Urql.UseQueryArgs<GetDogsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetDogsQuery>({ query: GetDogsDocument, ...options });
+};
 export const DogByNameDocument = gql`
     query dogByName($name: String!) {
   dog(name: $name) {
@@ -95,19 +99,6 @@ export const DogByNameDocument = gql`
 }
     `;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
-
-
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
-
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-  return {
-    getDogs(variables?: GetDogsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetDogsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetDogsQuery>(GetDogsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getDogs', 'query');
-    },
-    dogByName(variables: DogByNameQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DogByNameQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DogByNameQuery>(DogByNameDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'dogByName', 'query');
-    }
-  };
-}
-export type Sdk = ReturnType<typeof getSdk>;
+export function useDogByNameQuery(options: Omit<Urql.UseQueryArgs<DogByNameQueryVariables>, 'query'>) {
+  return Urql.useQuery<DogByNameQuery>({ query: DogByNameDocument, ...options });
+};
